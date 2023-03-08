@@ -5,13 +5,10 @@ docker
 jmeter
 
 Step to perform:
-1. On terminal:
+1.On terminal:
    1. docker-compose -f monitoring.yml up -d
 
 On Grafana
-1. On JMeter
-   1. install plugin: Custom Thread Groups
-   
 2. Connect to influxdb
    1. url: http://influxdb:8086
    2. database: loadTestingDB
