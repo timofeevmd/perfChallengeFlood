@@ -1,6 +1,3 @@
 /.idea/
 /var/
-/logs/csvReport/.*
-/logs/htmlReport/.*
-.*DS_Store.*
-.*.log
+.*DS_Store
