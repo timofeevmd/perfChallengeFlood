@@ -46,7 +46,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">${__property(pathToAggregateReport)}</stringProp>
+        <stringProp name="filename">${__property(path_to_aggregate_report)}</stringProp>
       </ResultCollector>
       <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
@@ -59,9 +59,9 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">${__property(targetHost)}</stringProp>
-        <stringProp name="HTTPSampler.port">${__property(targetPort)}</stringProp>
-        <stringProp name="HTTPSampler.protocol">${__property(targetHttpProtocol)}</stringProp>
+        <stringProp name="HTTPSampler.domain">${__property(target_host)}</stringProp>
+        <stringProp name="HTTPSampler.port">${__property(target_port)}</stringProp>
+        <stringProp name="HTTPSampler.protocol">${__property(target_http_protocol)}</stringProp>
         <stringProp name="HTTPSampler.contentEncoding"></stringProp>
         <stringProp name="HTTPSampler.path"></stringProp>
         <stringProp name="TestPlan.comments">https://challenge.flood.io:443</stringProp>
@@ -76,8 +76,8 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__property(counOfUsers)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__property(rumpUp)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__property(count_of_users)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__property(ramp_up)}</stringProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">${__property(duration)}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -234,6 +234,18 @@ assert (responseCode == &quot;200&quot; || responseCode == &quot;302&quot;) : &q
               <stringProp name="ConstantTimer.delay">${__P(offset)}</stringProp>
               <stringProp name="RandomTimer.range">${__P(deviation)}</stringProp>
             </GaussianRandomTimer>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -402,6 +414,18 @@ assert (responseCode == &quot;200&quot; || responseCode == &quot;302&quot;) : &q
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP2_/step/2" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -488,6 +512,18 @@ assert (responseCode == &quot;200&quot; || responseCode == &quot;302&quot;) : &q
               <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
               <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
             </GaussianRandomTimer>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -655,6 +691,18 @@ assert (responseCode == &quot;200&quot; || responseCode == &quot;302&quot;) : &q
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP3_/step/3" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -793,6 +841,18 @@ for (int i = 1; i &lt;= count; i++){
               <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
               <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
             </GaussianRandomTimer>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -967,6 +1027,18 @@ for (int i = 1; i &lt;= count; i++){
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP4_/step/4" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -1061,6 +1133,18 @@ for (int i = 1; i &lt;= count; i++){
               <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
               <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
             </GaussianRandomTimer>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -1291,6 +1375,18 @@ for (int i = 1; i &lt;= count; i++){
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP5_/step/5" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -1371,6 +1467,18 @@ for (int i = 1; i &lt;= count; i++){
                 </elementProp>
               </collectionProp>
             </HeaderManager>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP5_/code" enabled="true">
@@ -1455,6 +1563,18 @@ for (int i = 1; i &lt;= count; i++){
               <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
               <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
             </GaussianRandomTimer>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -1592,6 +1712,18 @@ for (int i = 1; i &lt;= count; i++){
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEPDONE_/done" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -1677,6 +1809,18 @@ for (int i = 1; i &lt;= count; i++){
               <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
               <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
             </GaussianRandomTimer>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">def responseCode = prev.getResponseCode();
+def url = prev.getUrlAsString();
+
+assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
             <hashTree/>
           </hashTree>
         </hashTree>
