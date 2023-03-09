@@ -17,4 +17,4 @@ On Grafana
 
 3. On terminal
    1. Start JMeter script
-      1. path/to/jmeter -n -t path/to/dir/perfChallengeFlood/testScript.jmx -l path/to/dir/perfChallengeFlood/logs/csvReport/testScript.csv -e -o path/to/dir/perfChallengeFlood/logs/htmlReport/
+      1. /path/to/jmeter -n -t /path/to/perfChallengeFlood/testScript.jmx -JcounOfUsers=5 -JrumpUp=10 -Jduration=60 -Jdeviation=50 -Joffset=1500 -JtargetHttpProtocol=https -JtargetHost=challenge.flood.io -JtargetPort=443 -JpathToAggregateReport=/path/to/perfChallengeFlood/logs/aggregateReport.csv -l /path/to/perfChallengeFlood/logs/csvReport/testScript.csv -e -o /path/to/perfChallengeFlood/logs/htmlReport/
