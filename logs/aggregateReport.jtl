@@ -221,8 +221,8 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 2023/03/10 15:43:33.171,258,GET_STEP3_/step/3,200,OK,Thread Group 1-5,text,true,,3022,1457,5,5,https://challenge.flood.io/step/3,257,0,0
 2023/03/10 15:43:32.721,760,GET_STEP5_/step/5,200,OK,Thread Group 1-3,text,true,,2155,1537,5,5,https://challenge.flood.io/step/5,760,0,509
 2023/03/10 15:43:33.436,252,POST_STEPDONE_/start,302,Found,Thread Group 1-2,text,true,,1127,1964,5,5,https://challenge.flood.io/start,252,0,0
-2023/03/10 15:43:33.484,241,GET_STEP5_/code,200,OK,Thread Group 1-3,text,true,,1079,1367,5,5,https://challenge.flood.io/code,241,0,0
 2023/03/10 15:43:33.470,255,POST_STEPDONE_/start,302,Found,Thread Group 1-1,text,true,,1127,1966,5,5,https://challenge.flood.io/start,255,0,0
+2023/03/10 15:43:33.484,241,GET_STEP5_/code,200,OK,Thread Group 1-3,text,true,,1079,1367,5,5,https://challenge.flood.io/code,241,0,0
 2023/03/10 15:43:33.691,257,GET_STEPDONE_/done,200,OK,Thread Group 1-2,text,true,,1960,1548,5,5,https://challenge.flood.io/done,256,0,0
 2023/03/10 15:43:33.727,256,GET_STEPDONE_/done,200,OK,Thread Group 1-1,text,true,,1960,1548,5,5,https://challenge.flood.io/done,256,0,0
 2023/03/10 15:43:34.678,235,POST_STEP5_/start,302,Found,Thread Group 1-4,text,true,,1126,2260,5,5,https://challenge.flood.io/start,234,0,0
