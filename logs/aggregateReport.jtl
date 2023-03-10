@@ -294,3 +294,15 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 2023/03/10 15:43:46.352,240,GET_STEPDONE_/done,200,OK,Thread Group 1-3,text,true,,1960,1548,5,5,https://challenge.flood.io/done,239,0,0
 2023/03/10 15:43:46.079,784,GET_STEP5_/step/5,200,OK,Thread Group 1-4,text,true,,2157,1537,5,5,https://challenge.flood.io/step/5,783,0,490
 2023/03/10 15:43:46.865,235,GET_STEP5_/code,200,OK,Thread Group 1-4,text,true,,1079,1367,5,5,https://challenge.flood.io/code,235,0,0
+2023/03/10 18:52:12.587,1415,GET_open_start_page_challenge.flood.io/,200,OK,Thread Group 1-1,text,true,,3222,696,1,1,https://challenge.flood.io/,1415,0,1108
+2023/03/10 18:52:15.250,287,POST_challenge.flood.io/start,302,Found,Thread Group 1-1,text,true,,1131,1822,1,1,https://challenge.flood.io/start,287,0,0
+2023/03/10 18:52:15.539,236,GET_challenge.flood.io/step/2,200,OK,Thread Group 1-1,text,true,,2420,1451,1,1,https://challenge.flood.io/step/2,236,0,0
+2023/03/10 18:52:17.068,314,POST_challenge.flood.io/start,302,Found,Thread Group 1-1,text,true,,1131,1850,1,1,https://challenge.flood.io/start,314,0,0
+2023/03/10 18:52:17.384,306,GET_challenge.flood.io/step/3,200,OK,Thread Group 1-1,text,true,,3023,1457,1,1,https://challenge.flood.io/step/3,306,0,0
+2023/03/10 18:52:18.936,254,POST_challenge.flood.io/start,302,Found,Thread Group 1-1,text,true,,1131,2085,1,1,https://challenge.flood.io/start,254,0,0
+2023/03/10 18:52:19.192,340,GET_challenge.flood.io/step/4,200,OK,Thread Group 1-1,text,true,,2058,1537,1,1,https://challenge.flood.io/step/4,340,0,0
+2023/03/10 18:52:20.778,235,POST_challenge.flood.io/start,302,Found,Thread Group 1-1,text,true,,1126,2256,1,1,https://challenge.flood.io/start,235,0,0
+2023/03/10 18:52:21.015,873,GET_challenge.flood.io/step/5,200,OK,Thread Group 1-1,text,true,,2151,1537,1,1,https://challenge.flood.io/step/5,872,0,568
+2023/03/10 18:52:21.890,304,GET_challenge.flood.io/code,200,OK,Thread Group 1-1,text,true,,1079,1367,1,1,https://challenge.flood.io/code,304,0,0
+2023/03/10 18:52:23.422,239,POST_challenge.flood.io/start,302,Found,Thread Group 1-1,text,true,,1127,1962,1,1,https://challenge.flood.io/start,239,0,0
+2023/03/10 18:52:23.663,240,GET_challenge.flood.io/done,200,OK,Thread Group 1-1,text,true,,1960,1548,1,1,https://challenge.flood.io/done,239,0,0

@@ -145,7 +145,7 @@
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="open_start_page" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_/" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_open_start_page_${target_host}/" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -277,31 +277,19 @@
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(vars.get(&quot;valueUTF8&quot;));
-assert responceBody.contains(vars.get(&quot;authenticityToken&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
-assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="403430482">${valueUTF8}</stringProp>
+                <stringProp name="-1948935412">${authenticityToken}</stringProp>
+                <stringProp name="679703792">${challengerStepId}</stringProp>
+                <stringProp name="-1012030078">${challengerStepNumber}</stringProp>
+                <stringProp name="-76142225">${commit}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -313,7 +301,7 @@ assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_2" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP2_/start" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_${target_host}/start" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="utf8" elementType="HTTPArgument">
@@ -438,30 +426,18 @@ assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/2\&quot;&gt;redirected&quot;);</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-182306040">You are being &lt;a href=&quot;https://challenge.flood.io/step/2&quot;&gt;redirected</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP2_/step/2" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_${target_host}/step/2" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -580,31 +556,19 @@ assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://chall
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(vars.get(&quot;valueUTF8&quot;));
-assert responceBody.contains(vars.get(&quot;authenticityToken&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
-assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="403430482">${valueUTF8}</stringProp>
+                <stringProp name="-1948935412">${authenticityToken}</stringProp>
+                <stringProp name="679703792">${challengerStepId}</stringProp>
+                <stringProp name="-1012030078">${challengerStepNumber}</stringProp>
+                <stringProp name="-76142225">${commit}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -616,7 +580,7 @@ assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_3" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP3_/start" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_${target_host}/start" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="utf8" elementType="HTTPArgument">
@@ -748,30 +712,18 @@ assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/3\&quot;&gt;redirected&quot;);</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-475709047">You are being &lt;a href=&quot;https://challenge.flood.io/step/3&quot;&gt;redirected</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP3_/step/3" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_${target_host}/step/3" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -934,32 +886,24 @@ for (int i = 1; i &lt;= count; i++){
 }</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-int count = Integer.parseInt(vars.get(&quot;challengerOrderSelected_matchNr&quot;));
-
-for(int i = 1; i &lt;= count; i++){
-	assert responceBody.contains(vars.get(&quot;challengerOrderSelected_&quot; + i));
-	assert responceBody.contains(vars.get(&quot;challengerOrderSelectedValue_&quot; + i));
-}</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-431259896">${challengerOrderSelected_1}</stringProp>
+                <stringProp name="-431259865">${challengerOrderSelected_2}</stringProp>
+                <stringProp name="-431259834">${challengerOrderSelected_3}</stringProp>
+                <stringProp name="-431259803">${challengerOrderSelected_4}</stringProp>
+                <stringProp name="-431259772">${challengerOrderSelected_5}</stringProp>
+                <stringProp name="1133567549">${challengerOrderSelectedValue_1}</stringProp>
+                <stringProp name="1133567580">${challengerOrderSelectedValue_2}</stringProp>
+                <stringProp name="1133567611">${challengerOrderSelectedValue_3}</stringProp>
+                <stringProp name="1133567642">${challengerOrderSelectedValue_4}</stringProp>
+                <stringProp name="1133567673">${challengerOrderSelectedValue_5}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -971,7 +915,7 @@ for(int i = 1; i &lt;= count; i++){
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_4" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP4_/start" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_${target_host}/start" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="utf8" elementType="HTTPArgument">
@@ -1110,30 +1054,18 @@ for(int i = 1; i &lt;= count; i++){
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/4\&quot;&gt;redirected&quot;);</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-769112054">You are being &lt;a href=&quot;https://challenge.flood.io/step/4&quot;&gt;redirected</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP4_/step/4" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_${target_host}/step/4" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -1281,32 +1213,20 @@ assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://chall
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(vars.get(&quot;valueUTF8&quot;));
-assert responceBody.contains(vars.get(&quot;authenticityToken&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
-assert responceBody.contains(vars.get(&quot;commit&quot;));
-assert responceBody.contains(vars.get(&quot;orderNumber&quot;));</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="403430482">${valueUTF8}</stringProp>
+                <stringProp name="-1948935412">${authenticityToken}</stringProp>
+                <stringProp name="679703792">${challengerStepId}</stringProp>
+                <stringProp name="-1012030078">${challengerStepNumber}</stringProp>
+                <stringProp name="-76142225">${commit}</stringProp>
+                <stringProp name="435414397">${orderNumber}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -1318,7 +1238,7 @@ assert responceBody.contains(vars.get(&quot;orderNumber&quot;));</stringProp>
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_5" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP5_/start" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_${target_host}/start" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="utf8" elementType="HTTPArgument">
@@ -1512,30 +1432,18 @@ assert responceBody.contains(vars.get(&quot;orderNumber&quot;));</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/5\&quot;&gt;redirected&quot;);</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1062515061">You are being &lt;a href=&quot;https://challenge.flood.io/step/5&quot;&gt;redirected</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP5_/step/5" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_${target_host}/step/5" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -1665,32 +1573,22 @@ assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://chall
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
-assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
-assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="403430482">${valueUTF8}</stringProp>
+                <stringProp name="-1948935412">${authenticityToken}</stringProp>
+                <stringProp name="679703792">${challengerStepId}</stringProp>
+                <stringProp name="-1012030078">${challengerStepNumber}</stringProp>
+                <stringProp name="-76142225">${commit}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEP5_/code" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_${target_host}/code" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -1768,27 +1666,15 @@ assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(vars.get(&quot;oneTimeToken&quot;));</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1196411488">${oneTimeToken}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -1800,7 +1686,7 @@ assert responceBody.contains(vars.get(&quot;oneTimeToken&quot;));</stringProp>
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_done" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEPDONE_/start" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_${target_host}/start" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="utf8" elementType="HTTPArgument">
@@ -1932,30 +1818,18 @@ assert responceBody.contains(vars.get(&quot;oneTimeToken&quot;));</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/done\&quot;&gt;redirected&quot;);</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-623703845">You are being &lt;a href=&quot;https://challenge.flood.io/done&quot;&gt;redirected</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_STEPDONE_/done" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_${target_host}/done" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -2035,36 +1909,19 @@ assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://chall
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
-
-assert responceBody.contains(&quot;You&apos;re Done!&quot;);
-assert responceBody.contains(&quot;That&apos;s it. You just walked through the test manually, now&apos;s the time to start scripting the steps to get to this point.&quot;);
-assert responceBody.contains(&quot;Want to enter our Hall of Fame?&quot;);
-assert responceBody.contains(&quot;Pay attention to the following details!&quot;);
-assert responceBody.contains(&quot;a href=&apos;https://flood.io/P2oO7ZyU&apos;&quot;);
-assert responceBody.contains(&quot;challengers@flood.io&quot;);
-assert responceBody.contains(&quot;I AM ROBOT&quot;);
-assert responceBody.contains(&quot;50 concurrent users&quot;);
-assert responceBody.contains(&quot;8,000 to 10,000 requests per minute&quot;);
-assert responceBody.contains(&quot;We won&apos;t accept results with errors&quot;);</stringProp>
-            </JSR223Assertion>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1925193929">a href=&apos;https://flood.io/P2oO7ZyU</stringProp>
+                <stringProp name="-495890446">challengers@flood.io</stringProp>
+                <stringProp name="-1238442163">I AM ROBOT</stringProp>
+                <stringProp name="-227375804">50 concurrent users</stringProp>
+                <stringProp name="989377591">8,000 to 10,000 requests per minute</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
