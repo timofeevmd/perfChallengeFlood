@@ -46,7 +46,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">${__property(path_to_aggregate_report)}</stringProp>
+        <stringProp name="filename">${path_to_aggregate_report}</stringProp>
       </ResultCollector>
       <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
@@ -59,9 +59,9 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">${__property(target_host)}</stringProp>
-        <stringProp name="HTTPSampler.port">${__property(target_port)}</stringProp>
-        <stringProp name="HTTPSampler.protocol">${__property(target_http_protocol)}</stringProp>
+        <stringProp name="HTTPSampler.domain">${target_host}</stringProp>
+        <stringProp name="HTTPSampler.port">${target_port}</stringProp>
+        <stringProp name="HTTPSampler.protocol">${target_http_protocol}</stringProp>
         <stringProp name="HTTPSampler.contentEncoding"></stringProp>
         <stringProp name="HTTPSampler.path"></stringProp>
         <stringProp name="TestPlan.comments">https://challenge.flood.io:443</stringProp>
@@ -70,35 +70,82 @@
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
       </ConfigTestElement>
       <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="target_http_protocol" elementType="Argument">
+            <stringProp name="Argument.name">target_http_protocol</stringProp>
+            <stringProp name="Argument.value">${__P(target_http_protocol, https)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default https</stringProp>
+          </elementProp>
+          <elementProp name="target_host" elementType="Argument">
+            <stringProp name="Argument.name">target_host</stringProp>
+            <stringProp name="Argument.value">${__P(target_host, challenge.flood.io)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default challenge.flood.io</stringProp>
+          </elementProp>
+          <elementProp name="target_port" elementType="Argument">
+            <stringProp name="Argument.name">target_port</stringProp>
+            <stringProp name="Argument.value">${__P(target_port, 443)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default 443</stringProp>
+          </elementProp>
+          <elementProp name="path_to_aggregate_report" elementType="Argument">
+            <stringProp name="Argument.name">path_to_aggregate_report</stringProp>
+            <stringProp name="Argument.value">${__P(path_to_aggregate_report, /Users/mikhail_timofeev1/Documents/epam/perfChallengeFlood/logs/aggregateReport.jtl)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default /Users/mikhail_timofeev1/Documents/epam/perfChallengeFlood/logs/aggregateReport.jtl</stringProp>
+          </elementProp>
+          <elementProp name="count_of_users" elementType="Argument">
+            <stringProp name="Argument.name">count_of_users</stringProp>
+            <stringProp name="Argument.value">${__P(count_of_users, 5)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default 5</stringProp>
+          </elementProp>
+          <elementProp name="ramp_up" elementType="Argument">
+            <stringProp name="Argument.name">ramp_up</stringProp>
+            <stringProp name="Argument.value">${__P(ramp_up, 10)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default 10</stringProp>
+          </elementProp>
+          <elementProp name="duration" elementType="Argument">
+            <stringProp name="Argument.name">duration</stringProp>
+            <stringProp name="Argument.value">${__P(duration, 60)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default 60</stringProp>
+          </elementProp>
+          <elementProp name="deviation" elementType="Argument">
+            <stringProp name="Argument.name">deviation</stringProp>
+            <stringProp name="Argument.value">${__P(deviation, 1300)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default 1300</stringProp>
+          </elementProp>
+          <elementProp name="offset" elementType="Argument">
+            <stringProp name="Argument.name">offset</stringProp>
+            <stringProp name="Argument.value">${__P(offset, 1200)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">by default 1200</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__property(count_of_users)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__property(ramp_up)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${count_of_users}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${ramp_up}</stringProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__property(duration)}</stringProp>
+        <stringProp name="ThreadGroup.duration">${duration}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="script">def responseCode = prev.getResponseCode();
-def url = prev.getUrlAsString();
-
-assert (responseCode == &quot;200&quot; || responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
-</stringProp>
-          <stringProp name="scriptLanguage">groovy</stringProp>
-        </JSR223Assertion>
-        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="open_start_page" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_openStartPage_/" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET_/" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -230,12 +277,7 @@ assert (responseCode == &quot;200&quot; || responseCode == &quot;302&quot;) : &q
               <stringProp name="BoundaryExtractor.match_number"></stringProp>
             </BoundaryExtractor>
             <hashTree/>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">${__P(offset)}</stringProp>
-              <stringProp name="RandomTimer.range">${__P(deviation)}</stringProp>
-            </GaussianRandomTimer>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -247,8 +289,28 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223Assertion>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(vars.get(&quot;valueUTF8&quot;));
+assert responceBody.contains(vars.get(&quot;authenticityToken&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
+assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_timer" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${__Random(${offset}, ${deviation})}</stringProp>
+        </TestAction>
+        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_2" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP2_/start" enabled="true">
@@ -376,45 +438,7 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor challengerAge" enabled="true">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">vars.put(&quot;challengerAge&quot;, &quot;${__Random(18,100)}&quot;)</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223PostProcessor>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -424,6 +448,16 @@ def url = prev.getUrlAsString();
 assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
 </stringProp>
               <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/2\&quot;&gt;redirected&quot;);</stringProp>
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
@@ -508,12 +542,45 @@ assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
-              <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
-            </GaussianRandomTimer>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor challengerAge" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">vars.put(&quot;challengerAge&quot;, &quot;${__Random(18,100)}&quot;)</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -525,8 +592,28 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223Assertion>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(vars.get(&quot;valueUTF8&quot;));
+assert responceBody.contains(vars.get(&quot;authenticityToken&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
+assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_timer" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${__Random(${offset}, ${deviation})}</stringProp>
+        </TestAction>
+        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_3" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP3_/start" enabled="true">
@@ -661,37 +748,7 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -701,6 +758,16 @@ def url = prev.getUrlAsString();
 assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
 </stringProp>
               <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/3\&quot;&gt;redirected&quot;);</stringProp>
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
@@ -785,6 +852,36 @@ assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
             <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerOrderSelected" enabled="true">
               <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
               <stringProp name="BoundaryExtractor.refname">challengerOrderSelected</stringProp>
@@ -837,12 +934,7 @@ for (int i = 1; i &lt;= count; i++){
 }</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
-              <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
-            </GaussianRandomTimer>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -854,8 +946,29 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223Assertion>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+int count = Integer.parseInt(vars.get(&quot;challengerOrderSelected_matchNr&quot;));
+
+for(int i = 1; i &lt;= count; i++){
+	assert responceBody.contains(vars.get(&quot;challengerOrderSelected_&quot; + i));
+	assert responceBody.contains(vars.get(&quot;challengerOrderSelectedValue_&quot; + i));
+}</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_timer" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${__Random(${offset}, ${deviation})}</stringProp>
+        </TestAction>
+        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_4" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP4_/start" enabled="true">
@@ -997,37 +1110,7 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1037,6 +1120,16 @@ def url = prev.getUrlAsString();
 assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
 </stringProp>
               <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/4\&quot;&gt;redirected&quot;);</stringProp>
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
@@ -1120,7 +1213,7 @@ assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor orderNumber" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">orderNumber</stringProp>
               <stringProp name="RegexExtractor.regex">\[order_\d.*\]&quot;\stype=&quot;hidden&quot;\svalue=&quot;(\d.*)&quot;</stringProp>
@@ -1129,12 +1222,66 @@ assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
               <stringProp name="RegexExtractor.match_number"></stringProp>
             </RegexExtractor>
             <hashTree/>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
-              <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
-            </GaussianRandomTimer>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor challengerOrder" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">challengerOrder</stringProp>
+              <stringProp name="RegexExtractor.regex">challenger\[order_\d{1,}\]</stringProp>
+              <stringProp name="RegexExtractor.template"></stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">-1</stringProp>
+            </RegexExtractor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor valueUTF8" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">valueUTF8</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;utf8&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor authenticityToken" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">authenticityToken</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;authenticity_token&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1146,8 +1293,29 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223Assertion>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(vars.get(&quot;valueUTF8&quot;));
+assert responceBody.contains(vars.get(&quot;authenticityToken&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
+assert responceBody.contains(vars.get(&quot;commit&quot;));
+assert responceBody.contains(vars.get(&quot;orderNumber&quot;));</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_timer" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${__Random(${offset}, ${deviation})}</stringProp>
+        </TestAction>
+        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_5" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEP5_/start" enabled="true">
@@ -1155,108 +1323,108 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <collectionProp name="Arguments.arguments">
                 <elementProp name="utf8" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">utf8</stringProp>
                   <stringProp name="Argument.value">${valueUTF8}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">utf8</stringProp>
                 </elementProp>
                 <elementProp name="authenticity_token" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">authenticity_token</stringProp>
                   <stringProp name="Argument.value">${authenticityToken}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">authenticity_token</stringProp>
                 </elementProp>
                 <elementProp name="challenger[step_id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[step_id]</stringProp>
                   <stringProp name="Argument.value">${challengerStepId}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">challenger[step_id]</stringProp>
                 </elementProp>
                 <elementProp name="challenger[step_number]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[step_number]</stringProp>
                   <stringProp name="Argument.value">${challengerStepNumber}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">challenger[step_number]</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_6]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_1_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_6]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_1_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_6]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_2_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_6]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_2_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_9]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_3_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_9]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_3_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_12]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_4_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_12]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_4_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_8]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_5_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_8]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_5_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_14]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_6_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_14]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_6_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_14]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_7_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_14]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_7_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_9]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_8_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_9]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_8_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_13]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_9_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_13]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_9_g0}</stringProp>
                 </elementProp>
-                <elementProp name="challenger[order_15]" elementType="HTTPArgument">
+                <elementProp name="${challengerOrder_10_g0}" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">challenger[order_15]</stringProp>
                   <stringProp name="Argument.value">${orderNumber_g1}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">${challengerOrder_10_g0}</stringProp>
                 </elementProp>
                 <elementProp name="commit" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">commit</stringProp>
                   <stringProp name="Argument.value">${commit}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">commit</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -1268,12 +1436,11 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -1345,37 +1512,7 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
-              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
-              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
-              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
-              <stringProp name="BoundaryExtractor.default"></stringProp>
-              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
-              <stringProp name="BoundaryExtractor.match_number"></stringProp>
-            </BoundaryExtractor>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1385,6 +1522,16 @@ def url = prev.getUrlAsString();
 assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
 </stringProp>
               <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/step/5\&quot;&gt;redirected&quot;);</stringProp>
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
@@ -1468,7 +1615,57 @@ assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor valueUTF8" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">valueUTF8</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;utf8&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor authenticityToken" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">authenticityToken</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;authenticity_token&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepId" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepId</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_id]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor challengerStepNumber" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">challengerStepNumber</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;challenger[step_number]&quot; type=&quot;hidden&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor commit" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">commit</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number"></stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1478,6 +1675,18 @@ def url = prev.getUrlAsString();
 assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
 </stringProp>
               <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(vars.get(&quot;challengerStepId&quot;));
+assert responceBody.contains(vars.get(&quot;challengerStepNumber&quot;));
+assert responceBody.contains(vars.get(&quot;commit&quot;));</stringProp>
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
@@ -1553,18 +1762,13 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor oneTimeToken" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">oneTimeToken</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">.code</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
-              <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
-            </GaussianRandomTimer>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1576,8 +1780,24 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223Assertion>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(vars.get(&quot;oneTimeToken&quot;));</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_timer" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${__Random(${offset}, ${deviation})}</stringProp>
+        </TestAction>
+        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="step_done" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST_STEPDONE_/start" enabled="true">
@@ -1712,7 +1932,7 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_302" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1722,6 +1942,16 @@ def url = prev.getUrlAsString();
 assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
 </stringProp>
               <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(&quot;You are being &lt;a href=\&quot;https://challenge.flood.io/done\&quot;&gt;redirected&quot;);</stringProp>
             </JSR223Assertion>
             <hashTree/>
           </hashTree>
@@ -1805,12 +2035,7 @@ assert (responseCode == &quot;302&quot;) : &quot;URL: &quot; + url;
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">${__property(offset)}</stringProp>
-              <stringProp name="RandomTimer.range">${__property(deviation)}</stringProp>
-            </GaussianRandomTimer>
-            <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200_||_302" enabled="true">
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceCode_equal_200" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -1822,8 +2047,33 @@ assert (responseCode == &quot;200&quot;) : &quot;URL: &quot; + url;
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223Assertion>
             <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223_Assertion_responceBody" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">def responceBody = prev.getResponseDataAsString();
+
+assert responceBody.contains(&quot;You&apos;re Done!&quot;);
+assert responceBody.contains(&quot;That&apos;s it. You just walked through the test manually, now&apos;s the time to start scripting the steps to get to this point.&quot;);
+assert responceBody.contains(&quot;Want to enter our Hall of Fame?&quot;);
+assert responceBody.contains(&quot;Pay attention to the following details!&quot;);
+assert responceBody.contains(&quot;a href=&apos;https://flood.io/P2oO7ZyU&apos;&quot;);
+assert responceBody.contains(&quot;challengers@flood.io&quot;);
+assert responceBody.contains(&quot;I AM ROBOT&quot;);
+assert responceBody.contains(&quot;50 concurrent users&quot;);
+assert responceBody.contains(&quot;8,000 to 10,000 requests per minute&quot;);
+assert responceBody.contains(&quot;We won&apos;t accept results with errors&quot;);</stringProp>
+            </JSR223Assertion>
+            <hashTree/>
           </hashTree>
         </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_timer" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${__Random(${offset}, ${deviation})}</stringProp>
+        </TestAction>
+        <hashTree/>
       </hashTree>
     </hashTree>
   </hashTree>
